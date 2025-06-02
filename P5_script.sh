@@ -1,18 +1,14 @@
 #!/bin/bash
 
-echo "=================================================================================================================================================="
-echo "Validación Práctica 5 - Virtualización y Almacenamiento"
-echo "=================================================================================================================================================="
+echo "======================================================="
+echo "Validación Práctica 5 - Infraestructura de red virtual"
+echo "======================================================="
+echo " "
 
-# Variables
+# Tarea 1: Creación de red NAT CLuster
 mv=mvp5
 RED_1="Cluster"
 RED_2="Almacenamiento"
-RED_LIBVIRT="Cluster"
-IP_INICIO_ESPERADA="192.168.140.2"
-IP_FINAL_ESPERADA="192.168.140.149"
-
-# Tarea 1: Creación de red NAT CLuster
 
 echo "Tarea 1: Creacion de la red NAT $RED_1"
 echo "Comprobando que existe la red NAT $RED_1..."
@@ -29,6 +25,9 @@ fi
 echo " "
 echo "Comprobando si el rango de direcciones se encuentra entre 192.168.140.2 – 192.168.140.149..."
 
+RED_LIBVIRT="Cluster"
+IP_INICIO_ESPERADA="192.168.140.2"
+IP_FINAL_ESPERADA="192.168.140.149"
 
 DHCP_BLOQUE=$(virsh net-dumpxml "$RED_LIBVIRT" | awk '/<dhcp>/,/<\/dhcp>/')
 IP_INICIO_REAL=$(echo "$DHCP_BLOQUE" | grep -oP "<range start='\K[^']+")
